@@ -1,0 +1,13 @@
+package br.com.grupointeratlantica.cpl.app_postergacoes;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class AppPostergacoesApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AppPostergacoesApplication.class, args);
+	}
+
+}
