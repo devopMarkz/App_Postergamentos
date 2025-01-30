@@ -16,7 +16,7 @@ public record UsuarioCriacaoDTO(
         @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
         String senha,
 
-        @NotNull(message = "O tipo de usuário é obrigatório")
+        @NotBlank(message = "O tipo de usuário é obrigatório")
         String tipoUsuario,
 
         List<Integer> codigosEmpresas, // codigos das empresas associadas
