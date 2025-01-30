@@ -1,7 +1,7 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.services.impl;
 
-import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.UsuarioCriacaoDTO;
-import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.UsuarioRespostaDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriacaoDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Usuario;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.RoleRepository;

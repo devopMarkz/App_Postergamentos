@@ -1,6 +1,6 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 
-import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.UsuarioCriacaoDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.UsuarioService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI;
 import org.springframework.http.ResponseEntity;

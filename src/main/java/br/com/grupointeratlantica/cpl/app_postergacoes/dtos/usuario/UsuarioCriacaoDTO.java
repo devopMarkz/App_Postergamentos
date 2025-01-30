@@ -1,8 +1,7 @@
-package br.com.grupointeratlantica.cpl.app_postergacoes.dtos;
+package br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;

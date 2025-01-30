@@ -1,7 +1,7 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.utils;
 
-import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.UsuarioCriacaoDTO;
-import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.UsuarioRespostaDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriacaoDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Empresa;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Role;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Usuario;
@@ -49,6 +49,6 @@ public class UsuarioMapper {
         // Mapeia as empresas
         List<String> empresas = usuario.getEmpresas().stream().map(Empresa::getNome).toList();
 
-        return new UsuarioRespostaDTO(usuario.getId(), usuario.getEmail(), usuario.getTipoUsuario(), roles, empresas);
+        return new UsuarioRespostaDTO(usuario.getId(), usuario.getEmail(), usuario.getTipoUsuario().name(), roles, empresas);
     }
 }

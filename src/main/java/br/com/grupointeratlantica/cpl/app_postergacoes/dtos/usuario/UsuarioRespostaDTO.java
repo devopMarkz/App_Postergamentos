@@ -1,4 +1,4 @@
-package br.com.grupointeratlantica.cpl.app_postergacoes.dtos;
+package br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario;
 
 import java.util.List;
 
