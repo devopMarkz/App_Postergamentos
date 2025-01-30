@@ -1,6 +1,5 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.dtos;
 
-import br.com.grupointeratlantica.cpl.app_postergacoes.models.enums.TipoUsuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
