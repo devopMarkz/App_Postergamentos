@@ -1,5 +1,6 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.models;
 
+import br.com.grupointeratlantica.cpl.app_postergacoes.models.enums.RoleEnum;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -15,23 +16,24 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "authority")
-    private String authority;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private RoleEnum role;
 
     @ManyToMany(mappedBy = "roles")
     private List<Usuario> usuarios = new ArrayList<>();
 
     @Override
     public String getAuthority() {
-        return authority;
+        return role.name();
     }
 
     public Role() {
     }
 
-    public Role(Long id, String authority) {
+    public Role(Long id, RoleEnum role) {
         this.id = id;
-        this.authority = authority;
+        this.role = role;
     }
 
     public Long getId() {
@@ -42,8 +44,8 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setRole(RoleEnum role) {
+        this.role = role;
     }
 
     public List<Usuario> getUsuarios() {
@@ -58,12 +60,12 @@ public class Role implements GrantedAuthority {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        Role role = (Role) object;
-        return Objects.equals(authority, role.authority);
+        Role role1 = (Role) object;
+        return role == role1.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(authority);
+        return Objects.hashCode(role);
     }
 }
