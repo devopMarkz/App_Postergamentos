@@ -8,6 +8,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_usuario")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING) // Define a coluna que diferencia os tipos
 public class Usuario {
 
     @Id
