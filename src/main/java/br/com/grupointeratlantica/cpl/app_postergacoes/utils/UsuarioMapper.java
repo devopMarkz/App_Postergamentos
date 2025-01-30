@@ -25,7 +25,6 @@ public class UsuarioMapper {
         this.empresaRepository = empresaRepository;
     }
 
-    @Transactional
     public Usuario toEntity(UsuarioCriacaoDTO usuarioCriacaoDTO, PasswordEncoder passwordEncoder) {
         Usuario usuario = new Usuario();
         usuario.setEmail(usuarioCriacaoDTO.email());
