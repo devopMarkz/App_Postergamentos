@@ -1,5 +1,6 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.models;
 
+import br.com.grupointeratlantica.cpl.app_postergacoes.models.enums.TipoUsuario;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,8 +12,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_usuario")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING) // Define a coluna que diferencia os tipos
 public class Usuario implements UserDetails {
 
     @Id
@@ -25,19 +24,30 @@ public class Usuario implements UserDetails {
     @Column(name = "senha")
     private String senha;
 
+    @Enumerated(EnumType.STRING) // Armazena o enum como texto no banco de dados
+    @Column(name = "tipo_usuario", nullable = false)
+    private TipoUsuario tipoUsuario;
+
     @ManyToMany
     @JoinTable(name = "tb_usuario_role",
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_role"))
     private List<Role> roles = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "tb_usuario_empresa",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_empresa"))
+    private List<Empresa> empresas = new ArrayList<>();
+
     public Usuario() {
     }
 
-    public Usuario(Long id, String email, String senha) {
+    public Usuario(Long id, String email, String senha, TipoUsuario tipoUsuario) {
         this.id = id;
         this.email = email;
         this.senha = senha;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public Long getId() {
@@ -64,6 +74,14 @@ public class Usuario implements UserDetails {
         this.senha = senha;
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -72,17 +90,26 @@ public class Usuario implements UserDetails {
         this.roles = roles;
     }
 
+    public void addEmpresa(Empresa empresa){
+        empresas.add(empresa);
+    }
+
+    public void addRole(Role role){
+        roles.add(role);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Usuario usuario = (Usuario) object;
-        return Objects.equals(id, usuario.id) && Objects.equals(email, usuario.email) && Objects.equals(senha, usuario.senha);
+        return Objects.equals(id, usuario.id) && Objects.equals(email, usuario.email) &&
+                Objects.equals(senha, usuario.senha) && tipoUsuario == usuario.tipoUsuario;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, senha);
+        return Objects.hash(id, email, senha, tipoUsuario);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Empresa {
     private String emailCorporativo;
 
     @ManyToMany(mappedBy = "empresas")
-    List<Comprador> compradores = new ArrayList<>();
+    List<Usuario> usuarios = new ArrayList<>();
 
     public Empresa() {
     }
@@ -68,12 +68,12 @@ public class Empresa {
         this.emailCorporativo = emailCorporativo;
     }
 
-    public List<Comprador> getCompradores() {
-        return compradores;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public void setCompradores(List<Comprador> compradores) {
-        this.compradores = compradores;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     @Override
