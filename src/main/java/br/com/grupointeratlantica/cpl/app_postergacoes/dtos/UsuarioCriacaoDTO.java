@@ -18,7 +18,7 @@ public record UsuarioCriacaoDTO(
         String senha,
 
         @NotNull(message = "O tipo de usuário é obrigatório")
-        TipoUsuario tipoUsuario,
+        String tipoUsuario,
 
         List<Integer> codigosEmpresas, // codigos das empresas associadas
 
