@@ -90,6 +90,14 @@ public class Usuario implements UserDetails {
         this.roles = roles;
     }
 
+    public List<Empresa> getEmpresas() {
+        return empresas;
+    }
+
+    public void setEmpresas(List<Empresa> empresas) {
+        this.empresas = empresas;
+    }
+
     public void addEmpresa(Empresa empresa){
         empresas.add(empresa);
     }
