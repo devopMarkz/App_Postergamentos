@@ -7,6 +7,7 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.models.Usuario;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.RoleRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.UsuarioRepository;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.UsuarioService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.SenhaIncorretaException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioInexistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioJaCadastradoException;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UsuarioService {
+public class UsuarioServiceImpl implements UsuarioService {
 
     private UsuarioRepository usuarioRepository;
     private RoleRepository roleRepository;
@@ -26,7 +27,7 @@ public class UsuarioService {
     private UsuarioMapper usuarioMapper;
     private PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, RoleRepository roleRepository, EmpresaRepository empresaRepository, UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, RoleRepository roleRepository, EmpresaRepository empresaRepository, UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.roleRepository = roleRepository;
         this.empresaRepository = empresaRepository;
@@ -34,6 +35,7 @@ public class UsuarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Override
     @Transactional
     public UsuarioRespostaDTO salvar(UsuarioCriacaoDTO usuarioCriacaoDTO){
         if(usuarioRepository.existsByEmail(usuarioCriacaoDTO.email())) throw new UsuarioJaCadastradoException("Usuário já cadastrado.");
@@ -42,12 +44,14 @@ public class UsuarioService {
         return usuarioMapper.toDTO(usuarioSalvo);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Page<UsuarioRespostaDTO> buscarTodos(Pageable pageable){
         Page<Usuario> usuarios = usuarioRepository.findAll(pageable);
         return usuarios.map(usuario -> usuarioMapper.toDTO(usuario));
     }
 
+    @Override
     @Transactional
     public void atualizarUsuario(UsuarioAtualizacaoDTO usuarioAtualizacaoDTO){
         if(!usuarioRepository.existsByEmail(usuarioAtualizacaoDTO.login())) {

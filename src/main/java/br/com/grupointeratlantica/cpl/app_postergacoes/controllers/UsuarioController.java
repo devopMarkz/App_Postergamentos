@@ -3,7 +3,8 @@ package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioAtualizacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioRespostaDTO;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.UsuarioService;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.UsuarioService;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.UsuarioServiceImpl;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ public class UsuarioController {
 
     private UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioServiceImpl usuarioService) {
         this.usuarioService = usuarioService;
     }
 
