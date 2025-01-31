@@ -4,6 +4,7 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriac
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.UsuarioService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -22,7 +23,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> criarUsuario(@RequestBody UsuarioCriacaoDTO usuarioCriacaoDTO){
+    public ResponseEntity<Void> criarUsuario(@Valid @RequestBody UsuarioCriacaoDTO usuarioCriacaoDTO){
         var usuario = usuarioService.salvar(usuarioCriacaoDTO);
         return ResponseEntity.created(GeradorDeURI.gerarURI(usuario.id())).build();
     }

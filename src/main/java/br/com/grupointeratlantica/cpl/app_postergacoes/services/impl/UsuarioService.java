@@ -6,6 +6,7 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.models.Usuario;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.RoleRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.UsuarioRepository;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioJaCadastradoException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.UsuarioMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,7 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioRespostaDTO salvar(UsuarioCriacaoDTO usuarioCriacaoDTO){
+        if(usuarioRepository.existsByEmail(usuarioCriacaoDTO.email())) throw new UsuarioJaCadastradoException("Usuário já cadastrado.");
         Usuario usuario = usuarioMapper.toEntity(usuarioCriacaoDTO, passwordEncoder);
         Usuario usuarioSalvo = usuarioRepository.save(usuario);
         return usuarioMapper.toDTO(usuarioSalvo);
