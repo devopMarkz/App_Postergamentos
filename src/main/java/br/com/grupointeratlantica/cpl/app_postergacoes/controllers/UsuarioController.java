@@ -1,5 +1,6 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioAtualizacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.UsuarioService;
@@ -33,5 +34,11 @@ public class UsuarioController {
     public ResponseEntity<Page<UsuarioRespostaDTO>> buscarUsuarios(@PageableDefault(page = 0, size = 10) Pageable pageable){
         Page<UsuarioRespostaDTO> usuarios = usuarioService.buscarTodos(pageable);
         return ResponseEntity.ok(usuarios);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> atualizarSenha(@Valid @RequestBody UsuarioAtualizacaoDTO usuarioAtualizacaoDTO){
+        usuarioService.atualizarUsuario(usuarioAtualizacaoDTO);
+        return ResponseEntity.noContent().build();
     }
 }

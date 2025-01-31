@@ -1,11 +1,14 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.services.impl;
 
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioAtualizacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Usuario;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.RoleRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.UsuarioRepository;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.SenhaIncorretaException;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioInexistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioJaCadastradoException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.UsuarioMapper;
 import org.springframework.data.domain.Page;
@@ -43,6 +46,23 @@ public class UsuarioService {
     public Page<UsuarioRespostaDTO> buscarTodos(Pageable pageable){
         Page<Usuario> usuarios = usuarioRepository.findAll(pageable);
         return usuarios.map(usuario -> usuarioMapper.toDTO(usuario));
+    }
+
+    @Transactional
+    public void atualizarUsuario(UsuarioAtualizacaoDTO usuarioAtualizacaoDTO){
+        if(!usuarioRepository.existsByEmail(usuarioAtualizacaoDTO.login())) {
+            throw new UsuarioInexistenteException("Usuário inexistente.");
+        }
+
+        Usuario usuario = usuarioRepository.findByEmail(usuarioAtualizacaoDTO.login()).get();
+
+        if(!passwordEncoder.matches(usuarioAtualizacaoDTO.senha(), usuario.getSenha())) {
+            throw new SenhaIncorretaException("A senha informada deve ser igual a senha que está sendo utilizada atualmente.");
+        }
+
+        usuario.setSenha(passwordEncoder.encode(usuarioAtualizacaoDTO.novaSenha()));
+
+        usuarioRepository.save(usuario);
     }
 
 }
