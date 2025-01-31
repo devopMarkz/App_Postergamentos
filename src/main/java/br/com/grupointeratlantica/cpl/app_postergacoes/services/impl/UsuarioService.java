@@ -7,6 +7,8 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepos
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.RoleRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.UsuarioRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.UsuarioMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,12 @@ public class UsuarioService {
         Usuario usuario = usuarioMapper.toEntity(usuarioCriacaoDTO, passwordEncoder);
         Usuario usuarioSalvo = usuarioRepository.save(usuario);
         return usuarioMapper.toDTO(usuarioSalvo);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<UsuarioRespostaDTO> buscarTodos(Pageable pageable){
+        Page<Usuario> usuarios = usuarioRepository.findAll(pageable);
+        return usuarios.map(usuario -> usuarioMapper.toDTO(usuario));
     }
 
 }
