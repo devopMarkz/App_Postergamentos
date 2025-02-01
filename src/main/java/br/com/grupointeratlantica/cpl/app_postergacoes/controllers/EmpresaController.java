@@ -1,5 +1,6 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.empresa.EmpresaAtualizacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.empresa.EmpresaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.EmpresaService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI;
@@ -33,6 +34,12 @@ public class EmpresaController {
                                                                     @PageableDefault(page = 0, size = 10) Pageable pageable){
         Page<EmpresaDTO> empresas = empresaService.buscarPorFiltros(codigo, nome, pageable);
         return ResponseEntity.ok(empresas);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> atualizarEmpresa(@RequestBody EmpresaAtualizacaoDTO empresaAtualizacaoDTO){
+        empresaService.atualizarEmpresa(empresaAtualizacaoDTO);
+        return ResponseEntity.noContent().build();
     }
 
 }
