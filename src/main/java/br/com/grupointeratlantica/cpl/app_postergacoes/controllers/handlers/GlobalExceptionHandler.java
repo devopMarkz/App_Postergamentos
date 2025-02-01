@@ -3,6 +3,7 @@ package br.com.grupointeratlantica.cpl.app_postergacoes.controllers.handlers;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroFieldsDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaValidationDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.EmpresaJaExistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.SenhaIncorretaException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioInexistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioJaCadastradoException;
@@ -31,6 +32,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UsuarioJaCadastradoException.class)
     public ResponseEntity<ErroRespostaDTO> usuarioJaCadastrado(UsuarioJaCadastradoException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.CONFLICT;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
+
+    @ExceptionHandler(EmpresaJaExistenteException.class)
+    public ResponseEntity<ErroRespostaDTO> usuarioJaCadastrado(EmpresaJaExistenteException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.CONFLICT;
         ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(erroRespostaDTO);

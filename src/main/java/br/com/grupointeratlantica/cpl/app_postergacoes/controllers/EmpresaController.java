@@ -3,12 +3,12 @@ package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.empresa.EmpresaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.EmpresaServiceImpl;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/empresas")
@@ -25,6 +25,14 @@ public class EmpresaController {
     public ResponseEntity<Void> criarEmpresa(@RequestBody EmpresaDTO empresaDTO){
         EmpresaDTO empresa = empresaService.salvar(empresaDTO);
         return ResponseEntity.created(GeradorDeURI.gerarURI(empresa.id())).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<EmpresaDTO>> buscarEmpresas(@RequestParam(required = false) Integer codigo,
+                                                                    @RequestParam(required = false) String nome,
+                                                                    @PageableDefault(page = 0, size = 10) Pageable pageable){
+        Page<EmpresaDTO> empresas = empresaService.buscarPorFiltros(codigo, nome, pageable);
+        return ResponseEntity.ok(empresas);
     }
 
 }

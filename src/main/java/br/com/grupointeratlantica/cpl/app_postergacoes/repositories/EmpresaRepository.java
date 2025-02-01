@@ -10,4 +10,6 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Integer> {
     // Metodo para buscar empresas pelo código
     List<Empresa> findByCodigoIn(List<Integer> codigos);
 
+    boolean existsByCodigoOrNomeOrEmailCorporativo(Integer codigo, String nome, String emailCorporativo);
+
 }
