@@ -1,7 +1,7 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.empresa.EmpresaDTO;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.EmpresaServiceImpl;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.EmpresaService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/empresas")
 public class EmpresaController {
 
-    private EmpresaServiceImpl empresaService;
+    private EmpresaService empresaService;
 
-    public EmpresaController(EmpresaServiceImpl empresaService) {
+    public EmpresaController(EmpresaService empresaService) {
         this.empresaService = empresaService;
     }
 

@@ -3,8 +3,8 @@ package br.com.grupointeratlantica.cpl.app_postergacoes.services.impl;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.empresa.EmpresaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Empresa;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepository;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.EmpresaService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.EmpresaJaExistenteException;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioJaCadastradoException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.EmpresaMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class EmpresaServiceImpl {
+public class EmpresaServiceImpl implements EmpresaService {
 
     private EmpresaRepository empresaRepository;
     private EmpresaMapper empresaMapper;
@@ -24,6 +24,7 @@ public class EmpresaServiceImpl {
         this.empresaMapper = empresaMapper;
     }
 
+    @Override
     @Transactional
     public EmpresaDTO salvar(EmpresaDTO empresaDTO){
         if(empresaRepository.existsByCodigoOrNomeOrEmailCorporativo(empresaDTO.codigo(), empresaDTO.nome(), empresaDTO.emailCorporativo())){
@@ -34,6 +35,7 @@ public class EmpresaServiceImpl {
         return empresaMapper.toDTO(empresa);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Page<EmpresaDTO> buscarPorFiltros(Integer codigo, String nome, Pageable pageable){
         Empresa empresaPrototipo = new Empresa(null, codigo, nome, null);
