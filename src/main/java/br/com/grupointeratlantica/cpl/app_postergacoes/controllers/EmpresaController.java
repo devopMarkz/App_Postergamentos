@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI.gerarURI;
+
 @RestController
 @RequestMapping("/empresas")
 public class EmpresaController {
@@ -25,7 +27,7 @@ public class EmpresaController {
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
     public ResponseEntity<Void> criarEmpresa(@RequestBody EmpresaDTO empresaDTO){
         EmpresaDTO empresa = empresaService.salvar(empresaDTO);
-        return ResponseEntity.created(GeradorDeURI.gerarURI(empresa.id())).build();
+        return ResponseEntity.created(gerarURI(empresa.id())).build();
     }
 
     @GetMapping

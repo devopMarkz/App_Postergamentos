@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI.gerarURI;
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -27,7 +29,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Void> criarUsuario(@Valid @RequestBody UsuarioCriacaoDTO usuarioCriacaoDTO){
         var usuario = usuarioService.salvar(usuarioCriacaoDTO);
-        return ResponseEntity.created(GeradorDeURI.gerarURI(usuario.id())).build();
+        return ResponseEntity.created(gerarURI(usuario.id())).build();
     }
 
     @GetMapping
