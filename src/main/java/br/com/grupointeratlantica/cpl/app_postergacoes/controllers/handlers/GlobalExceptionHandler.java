@@ -3,10 +3,7 @@ package br.com.grupointeratlantica.cpl.app_postergacoes.controllers.handlers;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroFieldsDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaValidationDTO;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.EmpresaJaExistenteException;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.SenhaIncorretaException;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioInexistenteException;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioJaCadastradoException;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +27,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
+    @ExceptionHandler(EmpresaInexistenteException.class)
+    public ResponseEntity<ErroRespostaDTO> empresaInexistente(EmpresaInexistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
+
     @ExceptionHandler(UsuarioJaCadastradoException.class)
     public ResponseEntity<ErroRespostaDTO> usuarioJaCadastrado(UsuarioJaCadastradoException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.CONFLICT;
@@ -38,21 +42,28 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EmpresaJaExistenteException.class)
-    public ResponseEntity<ErroRespostaDTO> usuarioJaCadastrado(EmpresaJaExistenteException e, HttpServletRequest request){
+    public ResponseEntity<ErroRespostaDTO> empresaJaExistente(EmpresaJaExistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.CONFLICT;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
+
+    @ExceptionHandler(ErroDeIntegridadeReferencialException.class)
+    public ResponseEntity<ErroRespostaDTO> erroDeIntegridadeReferencial(ErroDeIntegridadeReferencialException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.CONFLICT;
         ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
     @ExceptionHandler(UsuarioInexistenteException.class)
-    public ResponseEntity<ErroRespostaDTO> usuarioJaCadastrado(UsuarioInexistenteException e, HttpServletRequest request){
+    public ResponseEntity<ErroRespostaDTO> usuarioInexistente(UsuarioInexistenteException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.NOT_FOUND;
         ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
     @ExceptionHandler(SenhaIncorretaException.class)
-    public ResponseEntity<ErroRespostaDTO> usuarioJaCadastrado(SenhaIncorretaException e, HttpServletRequest request){
+    public ResponseEntity<ErroRespostaDTO> senhaIncorreta(SenhaIncorretaException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(erroRespostaDTO);

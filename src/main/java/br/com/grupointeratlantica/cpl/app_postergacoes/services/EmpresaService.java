@@ -13,4 +13,6 @@ public interface EmpresaService {
 
     void atualizarEmpresa(EmpresaAtualizacaoDTO empresaAtualizacaoDTO);
 
+    void deletarEmpresaPorId(Integer id);
+
 }

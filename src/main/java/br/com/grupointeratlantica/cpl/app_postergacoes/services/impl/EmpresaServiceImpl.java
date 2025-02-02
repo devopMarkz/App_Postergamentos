@@ -7,7 +7,9 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepos
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.EmpresaService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.EmpresaInexistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.EmpresaJaExistenteException;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.ErroDeIntegridadeReferencialException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.EmpresaMapper;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
@@ -64,6 +66,17 @@ public class EmpresaServiceImpl implements EmpresaService {
         empresa.setEmailCorporativo(empresaAtualizacaoDTO.emailCorporativo() == null? empresa.getEmailCorporativo() : empresaAtualizacaoDTO.emailCorporativo());
 
         empresaRepository.save(empresa);
+    }
+
+    @Transactional
+    public void deletarEmpresaPorId(Integer id){
+        if(!empresaRepository.existsById(id)) throw new EmpresaInexistenteException("Empresa inexistente.");
+        try {
+            empresaRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new ErroDeIntegridadeReferencialException("A entidade em questão já tem relação com outra entidade. Não pode ser excluída.");
+        }
+
     }
 
 }

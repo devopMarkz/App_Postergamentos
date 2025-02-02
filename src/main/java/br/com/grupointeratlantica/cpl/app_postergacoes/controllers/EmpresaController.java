@@ -37,8 +37,16 @@ public class EmpresaController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
     public ResponseEntity<Void> atualizarEmpresa(@RequestBody EmpresaAtualizacaoDTO empresaAtualizacaoDTO){
         empresaService.atualizarEmpresa(empresaAtualizacaoDTO);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
+    public ResponseEntity<Void> deletarEmpresa(@PathVariable Integer id){
+        empresaService.deletarEmpresaPorId(id);
         return ResponseEntity.noContent().build();
     }
 
