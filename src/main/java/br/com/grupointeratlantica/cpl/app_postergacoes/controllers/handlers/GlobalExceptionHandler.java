@@ -7,6 +7,7 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -80,6 +81,13 @@ public class GlobalExceptionHandler {
         }
         ErroRespostaValidationDTO errorMessageDto = new ErroRespostaValidationDTO(Instant.now(), status.value(), request.getRequestURI(), errors);
         return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErroRespostaDTO> httpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), "Corpo da requisição / Entrada de dados inválida.", request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
 }
