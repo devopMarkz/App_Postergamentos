@@ -26,6 +26,9 @@ public class Empresa {
     @ManyToMany(mappedBy = "empresas")
     List<Usuario> usuarios = new ArrayList<>();
 
+    @OneToMany(mappedBy = "empresa")
+    private List<NotaPostergada> notaPostergadas = new ArrayList<>();
+
     public Empresa() {
     }
 
@@ -74,6 +77,14 @@ public class Empresa {
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public List<NotaPostergada> getNotaPostergadas() {
+        return notaPostergadas;
+    }
+
+    public void setNotaPostergadas(List<NotaPostergada> notaPostergadas) {
+        this.notaPostergadas = notaPostergadas;
     }
 
     @Override
