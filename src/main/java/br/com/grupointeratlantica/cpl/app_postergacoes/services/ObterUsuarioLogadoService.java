@@ -11,6 +11,10 @@ public class ObterUsuarioLogadoService {
 
     private UsuarioRepository usuarioRepository;
 
+    public ObterUsuarioLogadoService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
     public Usuario obterUsuario(){
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         return usuarioRepository.findByEmail(login).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
