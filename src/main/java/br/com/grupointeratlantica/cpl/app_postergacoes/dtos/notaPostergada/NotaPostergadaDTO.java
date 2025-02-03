@@ -14,6 +14,7 @@ public record NotaPostergadaDTO(
         Double valorDoDesdobramento,
         String justificativa,
         StatusNotificacao statusNotificacao,
+        LocalDate dataMovimentacao,
         LocalDate dataRegistro,
         LocalDate dataAlteracao,
         String usuarioRegistro,

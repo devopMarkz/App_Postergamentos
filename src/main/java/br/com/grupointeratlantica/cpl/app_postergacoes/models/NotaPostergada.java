@@ -43,6 +43,10 @@ public class NotaPostergada {
     private StatusNotificacao statusNotificacao = StatusNotificacao.PENDENTE; // Padrão: PENDENTE
 
     @CreationTimestamp
+    @Column(name = "data_movimentacao")
+    private LocalDate dataMovimentacao;
+
+    @CreationTimestamp
     @Column(name = "data_registro")
     private LocalDate dataRegistro;
 
@@ -141,6 +145,14 @@ public class NotaPostergada {
 
     public void setStatusNotificacao(StatusNotificacao statusNotificacao) {
         this.statusNotificacao = statusNotificacao;
+    }
+
+    public LocalDate getDataMovimentacao() {
+        return dataMovimentacao;
+    }
+
+    public void setDataMovimentacao(LocalDate dataMovimentacao) {
+        this.dataMovimentacao = dataMovimentacao;
     }
 
     public LocalDate getDataRegistro() {
