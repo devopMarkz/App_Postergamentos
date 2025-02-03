@@ -4,6 +4,7 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.notaPostergada.NotaP
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.notaPostergada.NotaPostergadaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.NotaPostergada;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.NotaPostergadaRepository;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.NotaPostergadaJaExistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.NotaPostergadaMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,9 @@ public class NotaPostergadaServiceImpl {
 
     @Transactional
     public NotaPostergadaDTO salvar(NotaPostergadaCriacaoDTO notaPostergadaCriacaoDTO){
+        if(notaPostergadaRepository.existsByNumeroUnico(notaPostergadaCriacaoDTO.numeroUnico())) {
+            throw new NotaPostergadaJaExistenteException("Postergação com número único " + notaPostergadaCriacaoDTO.numeroUnico() + " já foi inclusa.");
+        }
         NotaPostergada notaPostergada = notaPostergadaMapper.toEntity(notaPostergadaCriacaoDTO);
         NotaPostergada novaNotaPostergada = notaPostergadaRepository.save(notaPostergada);
         return notaPostergadaMapper.toDTO(novaNotaPostergada);

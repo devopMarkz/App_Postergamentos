@@ -28,4 +28,6 @@ public interface NotaPostergadaRepository extends JpaRepository<NotaPostergada, 
             Pageable pageable
     );
 
+    boolean existsByNumeroUnico(Long numeroUnico);
+
 }

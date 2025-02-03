@@ -42,6 +42,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
+    @ExceptionHandler(NotaPostergadaJaExistenteException.class)
+    public ResponseEntity<ErroRespostaDTO> notaPostergadaJaExistente(NotaPostergadaJaExistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.CONFLICT;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
+
     @ExceptionHandler(EmpresaJaExistenteException.class)
     public ResponseEntity<ErroRespostaDTO> empresaJaExistente(EmpresaJaExistenteException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.CONFLICT;
