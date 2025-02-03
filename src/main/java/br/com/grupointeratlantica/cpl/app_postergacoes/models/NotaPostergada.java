@@ -3,9 +3,9 @@ package br.com.grupointeratlantica.cpl.app_postergacoes.models;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.enums.StatusNotificacao;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -43,8 +43,12 @@ public class NotaPostergada {
     private StatusNotificacao statusNotificacao = StatusNotificacao.PENDENTE; // Padrão: PENDENTE
 
     @CreationTimestamp
-    @Column(name = "data_hora_registro")
-    private LocalDateTime dataHoraRegistro;
+    @Column(name = "data_registro")
+    private LocalDate dataRegistro;
+
+    @UpdateTimestamp
+    @Column(name = "data_alteracao")
+    private LocalDate dataAlteracao;
 
     @ManyToOne
     @JoinColumn(name = "usuario_registro", referencedColumnName = "email")
@@ -57,7 +61,7 @@ public class NotaPostergada {
     public NotaPostergada() {
     }
 
-    public NotaPostergada(Long id, Long numeroUnico, String numeroNota, Empresa empresa, String parceiro, LocalDate dataVencimento, Double valorDoDesdobramento, String justificativa, StatusNotificacao statusNotificacao, LocalDateTime dataHoraRegistro, Usuario usuarioRegistro, Usuario usuarioAlteracao) {
+    public NotaPostergada(Long id, Long numeroUnico, String numeroNota, Empresa empresa, String parceiro, LocalDate dataVencimento, Double valorDoDesdobramento, String justificativa, StatusNotificacao statusNotificacao, Usuario usuarioRegistro, Usuario usuarioAlteracao) {
         this.id = id;
         this.numeroUnico = numeroUnico;
         this.numeroNota = numeroNota;
@@ -67,7 +71,6 @@ public class NotaPostergada {
         this.valorDoDesdobramento = valorDoDesdobramento;
         this.justificativa = justificativa;
         this.statusNotificacao = statusNotificacao;
-        this.dataHoraRegistro = dataHoraRegistro;
         this.usuarioRegistro = usuarioRegistro;
         this.usuarioAlteracao = usuarioAlteracao;
     }
@@ -140,12 +143,20 @@ public class NotaPostergada {
         this.statusNotificacao = statusNotificacao;
     }
 
-    public LocalDateTime getDataHoraRegistro() {
-        return dataHoraRegistro;
+    public LocalDate getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setDataHoraRegistro(LocalDateTime dataHoraRegistro) {
-        this.dataHoraRegistro = dataHoraRegistro;
+    public void setDataRegistro(LocalDate dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public LocalDate getDataAlteracao() {
+        return dataAlteracao;
+    }
+
+    public void setDataAlteracao(LocalDate dataAlteracao) {
+        this.dataAlteracao = dataAlteracao;
     }
 
     public Usuario getUsuarioRegistro() {
