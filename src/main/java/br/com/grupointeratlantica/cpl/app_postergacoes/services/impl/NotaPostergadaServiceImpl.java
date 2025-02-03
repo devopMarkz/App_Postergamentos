@@ -5,8 +5,12 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.notaPostergada.NotaP
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.NotaPostergada;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.NotaPostergadaRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.NotaPostergadaMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
 
 @Service
 public class NotaPostergadaServiceImpl {
@@ -24,6 +28,12 @@ public class NotaPostergadaServiceImpl {
         NotaPostergada notaPostergada = notaPostergadaMapper.toEntity(notaPostergadaCriacaoDTO);
         NotaPostergada novaNotaPostergada = notaPostergadaRepository.save(notaPostergada);
         return notaPostergadaMapper.toDTO(novaNotaPostergada);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<NotaPostergadaDTO> buscarTodasPorFiltro(LocalDate dataMinima, LocalDate dataMaxima, Long numeroUnico, String numeroNota, Integer codigoEmpresa, Pageable pageable){
+        Page<NotaPostergada> notasPostergadas = notaPostergadaRepository.pesquisarNotasPorFiltros(dataMinima, dataMaxima, numeroUnico, numeroNota, codigoEmpresa, pageable);
+        return notasPostergadas.map(notaPostergada -> notaPostergadaMapper.toDTO(notaPostergada));
     }
 
 }
