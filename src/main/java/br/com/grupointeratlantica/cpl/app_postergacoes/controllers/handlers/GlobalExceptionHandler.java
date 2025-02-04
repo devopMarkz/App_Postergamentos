@@ -71,6 +71,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
+    @ExceptionHandler(NotaPostergadaInexistenteException.class)
+    public ResponseEntity<ErroRespostaDTO> notaPostergadaInexistente(NotaPostergadaInexistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
+
     @ExceptionHandler(SenhaIncorretaException.class)
     public ResponseEntity<ErroRespostaDTO> senhaIncorreta(SenhaIncorretaException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;

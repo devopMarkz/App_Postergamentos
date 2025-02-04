@@ -4,8 +4,12 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.notaPostergada.NotaP
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.notaPostergada.NotaPostergadaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.NotaPostergada;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Usuario;
+import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.EmpresaRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.NotaPostergadaRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.UsuarioRepository;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.ObterUsuarioLogadoService;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.EmpresaInexistenteException;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.NotaPostergadaInexistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.NotaPostergadaJaExistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.UsuarioInexistenteException;
 import br.com.grupointeratlantica.cpl.app_postergacoes.utils.NotaPostergadaMapper;
@@ -22,12 +26,16 @@ public class NotaPostergadaServiceImpl {
 
     private NotaPostergadaRepository notaPostergadaRepository;
     private UsuarioRepository usuarioRepository;
+    private EmpresaRepository empresaRepository;
     private NotaPostergadaMapper notaPostergadaMapper;
+    private ObterUsuarioLogadoService obterUsuarioLogadoService;
 
-    public NotaPostergadaServiceImpl(NotaPostergadaRepository notaPostergadaRepository, UsuarioRepository usuarioRepository, NotaPostergadaMapper notaPostergadaMapper) {
+    public NotaPostergadaServiceImpl(NotaPostergadaRepository notaPostergadaRepository, UsuarioRepository usuarioRepository, EmpresaRepository empresaRepository, NotaPostergadaMapper notaPostergadaMapper, ObterUsuarioLogadoService obterUsuarioLogadoService) {
         this.notaPostergadaRepository = notaPostergadaRepository;
         this.usuarioRepository = usuarioRepository;
+        this.empresaRepository = empresaRepository;
         this.notaPostergadaMapper = notaPostergadaMapper;
+        this.obterUsuarioLogadoService = obterUsuarioLogadoService;
     }
 
     @Transactional
@@ -58,5 +66,23 @@ public class NotaPostergadaServiceImpl {
         return notasPostergadas.map(notaPostergada -> notaPostergadaMapper.toDTO(notaPostergada));
     }
 
+    @Transactional
+    public void atualizar(NotaPostergadaCriacaoDTO notaPostergadaCriacaoDTO){
+        NotaPostergada notaPostergada = notaPostergadaRepository.findByNumeroUnico(notaPostergadaCriacaoDTO.numeroUnico())
+                .orElseThrow(() -> new NotaPostergadaInexistenteException("Nota inexistente."));
+        NotaPostergada notaAtualizada = atualizarNota(notaPostergada, notaPostergadaCriacaoDTO);
+        notaPostergadaRepository.save(notaAtualizada);
+    }
+
+    private NotaPostergada atualizarNota(NotaPostergada notaPostergada, NotaPostergadaCriacaoDTO notaPostergadaCriacaoDTO){
+        notaPostergada.setEmpresa(empresaRepository.findByCodigo(notaPostergadaCriacaoDTO.codigoEmpresa())
+                .orElseThrow(() -> new EmpresaInexistenteException("Empresa de código " + notaPostergadaCriacaoDTO.codigoEmpresa() + " inexistente.")));
+        notaPostergada.setParceiro(notaPostergadaCriacaoDTO.parceiro());
+        notaPostergada.setDataVencimento(notaPostergadaCriacaoDTO.dataVencimento());
+        notaPostergada.setValorDoDesdobramento(notaPostergadaCriacaoDTO.valorDoDesdobramento());
+        notaPostergada.setJustificativa(notaPostergadaCriacaoDTO.justificativa());
+        notaPostergada.setUsuarioAlteracao(obterUsuarioLogadoService.obterUsuario());
+        return notaPostergada;
+    }
 
 }

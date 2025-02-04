@@ -53,4 +53,11 @@ public class NotaPostergadaController {
         return ResponseEntity.ok(notasPostergadas);
     }
 
+    @PutMapping("/financeiro")
+    @PreAuthorize("hasAnyRole('ROLE_FINANCEIRO', 'ROLE_ADMINISTRADOR')")
+    public ResponseEntity<Void> atualizarPorNumeroUnico(@RequestBody NotaPostergadaCriacaoDTO notaPostergadaCriacaoDTO){
+        notaPostergadaService.atualizar(notaPostergadaCriacaoDTO);
+        return ResponseEntity.noContent().build();
+    }
+
 }

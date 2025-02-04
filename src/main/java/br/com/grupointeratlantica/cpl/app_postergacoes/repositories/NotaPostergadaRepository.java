@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface NotaPostergadaRepository extends JpaRepository<NotaPostergada, Long> {
 
@@ -39,6 +40,8 @@ public interface NotaPostergadaRepository extends JpaRepository<NotaPostergada, 
                                                    @Param("dataMinima") LocalDate dataMinima,
                                                    @Param("dataMaxima") LocalDate dataMaxima,
                                                    Pageable pageable);
+
+    Optional<NotaPostergada> findByNumeroUnico(Long numeroUnico);
 
     boolean existsByNumeroUnico(Long numeroUnico);
 
