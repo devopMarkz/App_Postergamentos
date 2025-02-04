@@ -17,11 +17,11 @@ import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI
 
 @RestController
 @RequestMapping("/postergamentos")
-public class NotaPostergadaFinanceiroController {
+public class NotaPostergadaController {
 
     private NotaPostergadaServiceImpl notaPostergadaService;
 
-    public NotaPostergadaFinanceiroController(NotaPostergadaServiceImpl notaPostergadaService) {
+    public NotaPostergadaController(NotaPostergadaServiceImpl notaPostergadaService) {
         this.notaPostergadaService = notaPostergadaService;
     }
 
@@ -34,7 +34,7 @@ public class NotaPostergadaFinanceiroController {
 
     @GetMapping("/financeiro")
     @PreAuthorize("hasAnyRole('ROLE_FINANCEIRO', 'ROLE_ADMINISTRADOR')")
-    public ResponseEntity<Page<NotaPostergadaDTO>> buscarPorFiltro( @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataMinima,
+    public ResponseEntity<Page<NotaPostergadaDTO>> buscarPorFiltro(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataMinima,
                                                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataMaxima,
                                                                 @RequestParam(required = false) Long numeroUnico,
                                                                 @RequestParam(required = false) String numeroNota,
@@ -43,4 +43,14 @@ public class NotaPostergadaFinanceiroController {
         Page<NotaPostergadaDTO> notasPostergadas = notaPostergadaService.buscarTodasPorFiltro(dataMinima, dataMaxima, numeroUnico, numeroNota, codigoEmpresa, pageable);
         return ResponseEntity.ok(notasPostergadas);
     }
+
+    @GetMapping("/usuario")
+    @PreAuthorize("hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_COMPRADOR', 'ROLE_USUARIO')")
+    public ResponseEntity<Page<NotaPostergadaDTO>> buscarPorEmpresaDoComprador( @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataMinima,
+                                                                                @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataMaxima,
+                                                                                @PageableDefault(page = 0, size = 10) Pageable pageable){
+        Page<NotaPostergadaDTO> notasPostergadas = notaPostergadaService.buscarPorEmpresas(dataMinima, dataMaxima, pageable);
+        return ResponseEntity.ok(notasPostergadas);
+    }
+
 }
