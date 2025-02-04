@@ -5,9 +5,11 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.models.Role;
 import br.com.grupointeratlantica.cpl.app_postergacoes.models.Usuario;
 import br.com.grupointeratlantica.cpl.app_postergacoes.repositories.UsuarioRepository;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.TokenService;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.TokenInvalidoException;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -46,7 +48,7 @@ public class TokenServiceImpl implements TokenService {
                     .withExpiresAt(gerarTempoDeExpiracaoDoToken())
                     .sign(algorithm);
         } catch (JWTCreationException e){
-            throw new JWTCreationException("Erro na criação do Token.", e);
+            throw new TokenInvalidoException("Erro na criação do Token.");
         }
     }
 
@@ -63,8 +65,8 @@ public class TokenServiceImpl implements TokenService {
                     .build()
                     .verify(token)
                     .getSubject();
-        } catch (JWTCreationException e){
-            throw new JWTCreationException("Token inválido.", e);
+        } catch (JWTCreationException | TokenExpiredException e){
+            throw new TokenInvalidoException("Token inválido.");
         }
     }
 }

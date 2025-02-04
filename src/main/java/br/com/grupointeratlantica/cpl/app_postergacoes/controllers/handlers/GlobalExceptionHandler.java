@@ -98,8 +98,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
-    @ExceptionHandler(TokenExpiredException.class)
-    public ResponseEntity<ErroRespostaDTO> tokenExpired(TokenExpiredException e, HttpServletRequest request){
+    @ExceptionHandler(TokenInvalidoException.class)
+    public ResponseEntity<ErroRespostaDTO> tokenInvalido(TokenInvalidoException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.UNAUTHORIZED;
         ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), "Token expirado.", request.getRequestURI());
         return ResponseEntity.status(status).body(erroRespostaDTO);
