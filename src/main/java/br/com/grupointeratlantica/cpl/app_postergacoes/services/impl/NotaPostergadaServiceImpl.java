@@ -74,6 +74,12 @@ public class NotaPostergadaServiceImpl {
         notaPostergadaRepository.save(notaAtualizada);
     }
 
+    @Transactional
+    public void deletarPorNumeroUnico(Long numeroUnico){
+        if(!notaPostergadaRepository.existsByNumeroUnico(numeroUnico)) throw new NotaPostergadaInexistenteException("Postergamento inexistente.");
+        notaPostergadaRepository.deleteByNumeroUnico(numeroUnico);
+    }
+
     private NotaPostergada atualizarNota(NotaPostergada notaPostergada, NotaPostergadaCriacaoDTO notaPostergadaCriacaoDTO){
         notaPostergada.setEmpresa(empresaRepository.findByCodigo(notaPostergadaCriacaoDTO.codigoEmpresa())
                 .orElseThrow(() -> new EmpresaInexistenteException("Empresa de código " + notaPostergadaCriacaoDTO.codigoEmpresa() + " inexistente.")));

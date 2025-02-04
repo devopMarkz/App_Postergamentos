@@ -60,4 +60,11 @@ public class NotaPostergadaController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/financeiro/{numeroUnico}")
+    @PreAuthorize("hasAnyRole('ROLE_FINANCEIRO', 'ROLE_ADMINISTRADOR')")
+    public ResponseEntity<Void> deletarPorNumeroUnico(@PathVariable Long numeroUnico){
+        notaPostergadaService.deletarPorNumeroUnico(numeroUnico);
+        return ResponseEntity.noContent().build();
+    }
+
 }
