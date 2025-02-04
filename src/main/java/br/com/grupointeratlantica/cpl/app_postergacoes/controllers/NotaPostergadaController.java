@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI.gerarURI;
 
 @RestController
-@RequestMapping("financeiro/postergamentos")
+@RequestMapping("/postergamentos")
 public class NotaPostergadaFinanceiroController {
 
     private NotaPostergadaServiceImpl notaPostergadaService;
@@ -25,14 +25,14 @@ public class NotaPostergadaFinanceiroController {
         this.notaPostergadaService = notaPostergadaService;
     }
 
-    @PostMapping
+    @PostMapping("/financeiro")
     @PreAuthorize("hasAnyRole('ROLE_FINANCEIRO', 'ROLE_ADMINISTRADOR')")
     public ResponseEntity<Void> criarNotaPostergada(@RequestBody NotaPostergadaCriacaoDTO notaPostergadaCriacaoDTO){
         NotaPostergadaDTO notaPostergadaDTO = notaPostergadaService.salvar(notaPostergadaCriacaoDTO);
         return ResponseEntity.created(gerarURI(notaPostergadaDTO.id())).build();
     }
 
-    @GetMapping
+    @GetMapping("/financeiro")
     @PreAuthorize("hasAnyRole('ROLE_FINANCEIRO', 'ROLE_ADMINISTRADOR')")
     public ResponseEntity<Page<NotaPostergadaDTO>> buscarPorFiltro( @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataMinima,
                                                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataMaxima,

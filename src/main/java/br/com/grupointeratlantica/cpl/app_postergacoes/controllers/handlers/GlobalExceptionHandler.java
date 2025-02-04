@@ -4,6 +4,7 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroFieldsDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaValidationDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.*;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -94,6 +95,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErroRespostaDTO> httpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), "Corpo da requisição / Entrada de dados inválida.", request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
+
+    @ExceptionHandler(TokenExpiredException.class)
+    public ResponseEntity<ErroRespostaDTO> tokenExpired(TokenExpiredException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), "Token expirado.", request.getRequestURI());
         return ResponseEntity.status(status).body(erroRespostaDTO);
     }
 
