@@ -43,6 +43,9 @@ public interface NotaPostergadaRepository extends JpaRepository<NotaPostergada, 
                                                    @Param("dataMaxima") LocalDate dataMaxima,
                                                    Pageable pageable);
 
+    @Query("SELECT obj FROM NotaPostergada obj WHERE obj.statusNotificacao = 'PENDENTE'")
+    List<NotaPostergada> obterNotasPendentesDeEnvio();
+
     Optional<NotaPostergada> findByNumeroUnico(Long numeroUnico);
 
     boolean existsByNumeroUnico(Long numeroUnico);
