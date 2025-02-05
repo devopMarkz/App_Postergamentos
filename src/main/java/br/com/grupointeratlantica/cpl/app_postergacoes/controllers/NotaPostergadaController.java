@@ -2,7 +2,7 @@ package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.notaPostergada.NotaPostergadaCriacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.notaPostergada.NotaPostergadaDTO;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.NotaPostergadaServiceImpl;
+import br.com.grupointeratlantica.cpl.app_postergacoes.services.NotaPostergadaService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -19,9 +19,9 @@ import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI
 @RequestMapping("/postergamentos")
 public class NotaPostergadaController {
 
-    private NotaPostergadaServiceImpl notaPostergadaService;
+    private NotaPostergadaService notaPostergadaService;
 
-    public NotaPostergadaController(NotaPostergadaServiceImpl notaPostergadaService) {
+    public NotaPostergadaController(NotaPostergadaService notaPostergadaService) {
         this.notaPostergadaService = notaPostergadaService;
     }
 
@@ -65,6 +65,13 @@ public class NotaPostergadaController {
     public ResponseEntity<Void> deletarPorNumeroUnico(@PathVariable Long numeroUnico){
         notaPostergadaService.deletarPorNumeroUnico(numeroUnico);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/financeiro/enviar")
+    @PreAuthorize("hasAnyRole('ROLE_FINANCEIRO', 'ROLE_ADMINISTRADOR')")
+    public ResponseEntity<Void> enviarNotasPostergadas(){
+        notaPostergadaService.enviarTodasAsNotasPostergadas();
+        return ResponseEntity.ok().build();
     }
 
 }
