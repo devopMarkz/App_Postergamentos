@@ -4,7 +4,6 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroFieldsDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaValidationDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.*;
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +20,20 @@ import java.util.List;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(GeracaoDeRelatorioInvalidaException.class)
+    public ResponseEntity<ErroRespostaDTO> geracaoDeRelatorioInvalida(GeracaoDeRelatorioInvalidaException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
+
+    @ExceptionHandler(EmailException.class)
+    public ResponseEntity<ErroRespostaDTO> email(EmailException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErroRespostaDTO erroRespostaDTO = new ErroRespostaDTO(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(erroRespostaDTO);
+    }
 
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<ErroRespostaDTO> usernameNotFound(UsernameNotFoundException e, HttpServletRequest request){
