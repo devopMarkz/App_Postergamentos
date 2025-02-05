@@ -2,7 +2,9 @@ package br.com.grupointeratlantica.cpl.app_postergacoes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
+@EnableAsync
 @SpringBootApplication
 public class AppPostergacoesApplication {
 
