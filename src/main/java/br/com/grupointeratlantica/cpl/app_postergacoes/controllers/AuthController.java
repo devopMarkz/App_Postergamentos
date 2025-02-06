@@ -1,10 +1,12 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.login.AuthDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.token.TokenDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping
-    public String autenticarUsuario(@RequestBody AuthDTO authDTO, HttpServletRequest request) {
+    public ResponseEntity<TokenDTO> autenticarUsuario(@RequestBody AuthDTO authDTO, HttpServletRequest request) {
         log.info("Requisição recebida: Método={} | Endpoint={} | Usuário={}",
                 request.getMethod(), request.getRequestURI(), authDTO.login().substring(0, 3) + "***");
 
@@ -34,7 +36,11 @@ public class AuthController {
         authenticationManager.authenticate(authentication);
 
         log.info("Usuário {} autenticado com sucesso.", authDTO.login().substring(0, 3) + "***");
-        return tokenService.obterToken(authDTO);
+
+        String accessToken = tokenService.obterToken(authDTO);
+        String expiresIn = tokenService.retornarTempoDeExpiracaoDoToken(accessToken);
+
+        return ResponseEntity.ok(new TokenDTO(accessToken, expiresIn));
     }
 
 }

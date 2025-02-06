@@ -69,4 +69,19 @@ public class TokenServiceImpl implements TokenService {
             throw new TokenInvalidoException("Token inválido.");
         }
     }
+
+    @Override
+    public String retornarTempoDeExpiracaoDoToken(String token){
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secretKey);
+            return JWT.require(algorithm)
+                    .withIssuer("app_postergamentos")
+                    .build()
+                    .verify(token)
+                    .getExpiresAtAsInstant()
+                    .toString();
+        } catch (JWTCreationException e){
+            throw new TokenInvalidoException("Token inválido.");
+        }
+    }
 }

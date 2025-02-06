@@ -6,5 +6,6 @@ public interface TokenService {
 
     String obterToken(AuthDTO authDTO);
     String validarTokenERetornarLoginDeUsuario(String token);
+    String retornarTempoDeExpiracaoDoToken(String token);
 
 }
