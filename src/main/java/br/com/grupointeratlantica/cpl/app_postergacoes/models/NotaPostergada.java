@@ -191,6 +191,10 @@ public class NotaPostergada {
         this.statusNotificacao = StatusNotificacao.ENVIADO;
     }
 
+    public void marcarComoPendente() {
+        this.statusNotificacao = StatusNotificacao.PENDENTE;
+    }
+
     public boolean isNotificacaoPendente() {
         return this.statusNotificacao == StatusNotificacao.PENDENTE;
     }

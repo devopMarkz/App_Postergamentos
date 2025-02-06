@@ -18,8 +18,8 @@ public interface NotaPostergadaRepository extends JpaRepository<NotaPostergada, 
 
     @Query("""
     SELECT n FROM NotaPostergada n
-    WHERE (:dataMinima IS NULL OR n.dataMovimentacao >= :dataMinima)
-    AND (:dataMaxima IS NULL OR n.dataMovimentacao <= :dataMaxima)
+    WHERE (COALESCE(:dataMinima, n.dataMovimentacao) = n.dataMovimentacao OR n.dataMovimentacao >= :dataMinima)
+    AND (COALESCE(:dataMaxima, n.dataMovimentacao) = n.dataMovimentacao OR n.dataMovimentacao <= :dataMaxima)
     AND (:numeroUnico IS NULL OR n.numeroUnico = :numeroUnico)
     AND (:numeroNota IS NULL OR n.numeroNota LIKE %:numeroNota%)
     AND (:codigoEmpresa IS NULL OR n.empresa.codigo = :codigoEmpresa)
@@ -35,8 +35,8 @@ public interface NotaPostergadaRepository extends JpaRepository<NotaPostergada, 
 
     @Query("SELECT n FROM NotaPostergada n " +
             "WHERE n.empresa IN :empresas " +
-            "AND (:dataMinima IS NULL OR n.dataMovimentacao >= :dataMinima) " +
-            "AND (:dataMaxima IS NULL OR n.dataMovimentacao <= :dataMaxima) " +
+            "AND (COALESCE(:dataMinima, n.dataMovimentacao) = n.dataMovimentacao OR n.dataMovimentacao >= :dataMinima) " +
+            "AND (COALESCE(:dataMaxima, n.dataMovimentacao) = n.dataMovimentacao OR n.dataMovimentacao <= :dataMaxima) " +
             "AND n.statusNotificacao = 'ENVIADO'")
     Page<NotaPostergada> pesquisarNotasPorEmpresas(@Param("empresas") List<Empresa> empresas,
                                                    @Param("dataMinima") LocalDate dataMinima,
