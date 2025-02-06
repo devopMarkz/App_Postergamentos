@@ -80,6 +80,7 @@ public class NotaPostergadaServiceImpl implements NotaPostergadaService {
         NotaPostergada notaPostergada = notaPostergadaRepository.findByNumeroUnico(notaPostergadaCriacaoDTO.numeroUnico())
                 .orElseThrow(() -> new NotaPostergadaInexistenteException("Nota inexistente."));
         NotaPostergada notaAtualizada = atualizarNota(notaPostergada, notaPostergadaCriacaoDTO);
+        notaAtualizada.marcarComoPendente();
         notaPostergadaRepository.save(notaAtualizada);
     }
 
