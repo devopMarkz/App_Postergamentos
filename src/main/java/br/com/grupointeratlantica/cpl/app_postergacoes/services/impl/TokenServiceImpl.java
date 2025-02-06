@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.List;
 
@@ -78,7 +79,7 @@ public class TokenServiceImpl implements TokenService {
                     .withIssuer("app_postergamentos")
                     .build()
                     .verify(token)
-                    .getExpiresAtAsInstant()
+                    .getExpiresAtAsInstant().atZone(ZoneId.systemDefault())
                     .toString();
         } catch (JWTCreationException e){
             throw new TokenInvalidoException("Token inválido.");
