@@ -17,12 +17,12 @@ import java.util.Optional;
 public interface NotaPostergadaRepository extends JpaRepository<NotaPostergada, Long> {
 
     @Query("""
-        SELECT n FROM NotaPostergada n
-        WHERE (:dataMinima IS NULL OR n.dataMovimentacao >= :dataMinima)
-        AND (:dataMaxima IS NULL OR n.dataMovimentacao <= :dataMaxima)
-        AND (:numeroUnico IS NULL OR n.numeroUnico = :numeroUnico)
-        AND (:numeroNota IS NULL OR n.numeroNota LIKE %:numeroNota%)
-        AND (:codigoEmpresa IS NULL OR n.empresa.codigo = :codigoEmpresa)
+    SELECT n FROM NotaPostergada n
+    WHERE (:dataMinima IS NULL OR n.dataMovimentacao >= :dataMinima)
+    AND (:dataMaxima IS NULL OR n.dataMovimentacao <= :dataMaxima)
+    AND (:numeroUnico IS NULL OR n.numeroUnico = :numeroUnico)
+    AND (:numeroNota IS NULL OR n.numeroNota LIKE %:numeroNota%)
+    AND (:codigoEmpresa IS NULL OR n.empresa.codigo = :codigoEmpresa)
     """)
     Page<NotaPostergada> pesquisarNotasPorFiltros(
             @Param("dataMinima") LocalDate dataMinima,

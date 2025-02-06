@@ -1,6 +1,6 @@
 INSERT INTO tb_empresa (codigo, nome, email_corporativo) VALUES (101, 'Internacional Marítima LTDA', 'marcosacs.2018@gmail.com');
 INSERT INTO tb_empresa (codigo, nome, email_corporativo) VALUES (102, 'Internacional Marítima Guaratuba LTDA', 'marcosacs.2022@gmail.com');
-INSERT INTO tb_empresa (codigo, nome, email_corporativo) VALUES (103, 'Interlocação de Veículos', 'sarasousa202@gmail.com');
+INSERT INTO tb_empresa (codigo, nome, email_corporativo) VALUES (103, 'Interlocação de Veículos', 'marcos.andre@grupointeratlantica.com.br');
 
 -- Seeding das roles na tabela tb_role
 INSERT INTO tb_role (role) VALUES ('ROLE_ADMINISTRADOR');
