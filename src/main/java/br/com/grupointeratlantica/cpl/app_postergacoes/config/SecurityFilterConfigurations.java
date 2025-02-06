@@ -38,6 +38,14 @@ public class SecurityFilterConfigurations {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.POST, "/usuarios", "/auth").permitAll();
                     auth.requestMatchers(HttpMethod.PUT, "/usuarios").permitAll();
+                    auth.requestMatchers(
+                            "/v2/api-docs/**",
+                            "/v3/api-docs/**",
+                            "/swagger-resources/**",
+                            "/swagger-ui.html",
+                            "/swagger-ui/**",
+                            "/webjars/**",
+                            "/actuator/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilterAuthentication, UsernamePasswordAuthenticationFilter.class)
