@@ -22,8 +22,8 @@ import java.util.List;
 @Service
 public class TokenServiceImpl implements TokenService {
 
-    private UsuarioRepository usuarioRepository;
-    private String secretKey;
+    private final UsuarioRepository usuarioRepository;
+    private final String secretKey;
 
     public TokenServiceImpl(UsuarioRepository usuarioRepository, @Value("${secret-key}") String secretKey) {
         this.usuarioRepository = usuarioRepository;

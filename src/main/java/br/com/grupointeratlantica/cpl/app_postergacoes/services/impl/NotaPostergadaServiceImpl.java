@@ -27,12 +27,12 @@ import java.util.List;
 @Service
 public class NotaPostergadaServiceImpl implements NotaPostergadaService {
 
-    private NotaPostergadaRepository notaPostergadaRepository;
-    private UsuarioRepository usuarioRepository;
-    private EmpresaRepository empresaRepository;
-    private NotaPostergadaMapper notaPostergadaMapper;
-    private ObterUsuarioLogadoService obterUsuarioLogadoService;
-    private EmailService emailService;
+    private final NotaPostergadaRepository notaPostergadaRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final EmpresaRepository empresaRepository;
+    private final NotaPostergadaMapper notaPostergadaMapper;
+    private final ObterUsuarioLogadoService obterUsuarioLogadoService;
+    private final EmailService emailService;
 
     public NotaPostergadaServiceImpl(NotaPostergadaRepository notaPostergadaRepository, UsuarioRepository usuarioRepository, EmpresaRepository empresaRepository, NotaPostergadaMapper notaPostergadaMapper, ObterUsuarioLogadoService obterUsuarioLogadoService, EmailService emailService) {
         this.notaPostergadaRepository = notaPostergadaRepository;

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private AuthenticationManager authenticationManager;
-    private TokenService tokenService;
+    private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
 
     public AuthController(AuthenticationManager authenticationManager, TokenService tokenService) {
         this.authenticationManager = authenticationManager;

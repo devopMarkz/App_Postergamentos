@@ -20,7 +20,7 @@ import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     public UsuarioController(UsuarioServiceImpl usuarioService) {
         this.usuarioService = usuarioService;

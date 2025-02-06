@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class SecurityFilterConfigurations {
 
-    private SecurityFilterAuthentication securityFilterAuthentication;
+    private final SecurityFilterAuthentication securityFilterAuthentication;
 
     public SecurityFilterConfigurations(SecurityFilterAuthentication securityFilterAuthentication) {
         this.securityFilterAuthentication = securityFilterAuthentication;

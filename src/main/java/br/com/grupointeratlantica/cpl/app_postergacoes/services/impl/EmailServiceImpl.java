@@ -4,7 +4,6 @@ import br.com.grupointeratlantica.cpl.app_postergacoes.models.NotaPostergada;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.EmailService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.RelatorioExcelService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.EmailException;
-import br.com.grupointeratlantica.cpl.app_postergacoes.services.exceptions.GeracaoDeRelatorioInvalidaException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;

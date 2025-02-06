@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotaPostergadaMapper {
 
-    private EmpresaRepository empresaRepository;
-    private ObterUsuarioLogadoService obterUsuarioLogadoService;
+    private final EmpresaRepository empresaRepository;
+    private final ObterUsuarioLogadoService obterUsuarioLogadoService;
 
     public NotaPostergadaMapper(EmpresaRepository empresaRepository, ObterUsuarioLogadoService obterUsuarioLogadoService) {
         this.empresaRepository = empresaRepository;

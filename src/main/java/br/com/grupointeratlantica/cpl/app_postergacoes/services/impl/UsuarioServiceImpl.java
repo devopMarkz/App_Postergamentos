@@ -21,11 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
-    private UsuarioRepository usuarioRepository;
-    private RoleRepository roleRepository;
-    private EmpresaRepository empresaRepository;
-    private UsuarioMapper usuarioMapper;
-    private PasswordEncoder passwordEncoder;
+    private final UsuarioRepository usuarioRepository;
+    private final RoleRepository roleRepository;
+    private final EmpresaRepository empresaRepository;
+    private final UsuarioMapper usuarioMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository, RoleRepository roleRepository, EmpresaRepository empresaRepository, UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;

@@ -19,7 +19,7 @@ import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI
 @RequestMapping("/postergamentos")
 public class NotaPostergadaController {
 
-    private NotaPostergadaService notaPostergadaService;
+    private final NotaPostergadaService notaPostergadaService;
 
     public NotaPostergadaController(NotaPostergadaService notaPostergadaService) {
         this.notaPostergadaService = notaPostergadaService;

@@ -17,7 +17,7 @@ import static br.com.grupointeratlantica.cpl.app_postergacoes.utils.GeradorDeURI
 @RequestMapping("/empresas")
 public class EmpresaController {
 
-    private EmpresaService empresaService;
+    private final EmpresaService empresaService;
 
     public EmpresaController(EmpresaService empresaService) {
         this.empresaService = empresaService;

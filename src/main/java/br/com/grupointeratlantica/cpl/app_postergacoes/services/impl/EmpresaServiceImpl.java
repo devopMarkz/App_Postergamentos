@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class EmpresaServiceImpl implements EmpresaService {
 
-    private EmpresaRepository empresaRepository;
-    private EmpresaMapper empresaMapper;
+    private final EmpresaRepository empresaRepository;
+    private final EmpresaMapper empresaMapper;
 
     public EmpresaServiceImpl(EmpresaRepository empresaRepository, EmpresaMapper empresaMapper) {
         this.empresaRepository = empresaRepository;
