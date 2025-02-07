@@ -51,3 +51,15 @@ CREATE TABLE tb_usuario_empresa (
     id_empresa INTEGER REFERENCES tb_empresa(id),
     PRIMARY KEY (id_usuario, id_empresa)
 );
+
+-- Seeding das roles na tabela tb_role
+INSERT INTO tb_role (role) VALUES ('ROLE_ADMINISTRADOR');
+INSERT INTO tb_role (role) VALUES ('ROLE_USUARIO');
+INSERT INTO tb_role (role) VALUES ('ROLE_COMPRADOR');
+INSERT INTO tb_role (role) VALUES ('ROLE_FINANCEIRO');
+
+-- A senha encriptada é '123456'
+INSERT INTO tb_usuario (email, senha, tipo_usuario) VALUES ('marcos@gmail.com', '$2a$10$ShGLoxjUkh3W/Ee4aS55WOLHgFjhQ7K5gRtYUtXxBDBZb/fwoa9z.', 'COMPRADOR');
+
+-- Usuário do tipo ADMIN
+INSERT INTO tb_usuario_role (id_usuario, id_role) VALUES (1, 1);
