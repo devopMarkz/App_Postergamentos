@@ -950,3 +950,6 @@ java.net.UnknownHostException: postgres:SimAgAZtabIbJgNVPRgVDTtMUSjeEobF@viaduct
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
 	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
 
+2025-02-06T22:54:37.343-03:00  INFO 12892 --- [app-postergacoes] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-06T22:54:37.497-03:00  INFO 12892 --- [app-postergacoes] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-06T22:54:37.509-03:00  INFO 12892 --- [app-postergacoes] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
