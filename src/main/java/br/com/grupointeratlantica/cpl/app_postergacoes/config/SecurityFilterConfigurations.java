@@ -31,12 +31,13 @@ public class SecurityFilterConfigurations {
     }
 
     @Bean
+    @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(HttpMethod.POST, "apppostergamentos-production.up.railway.app/usuarios", "/auth").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/usuarios", "/auth").permitAll();
                     auth.requestMatchers(HttpMethod.PUT, "/usuarios").permitAll();
                     auth.requestMatchers(
                             "/v2/api-docs/**",
