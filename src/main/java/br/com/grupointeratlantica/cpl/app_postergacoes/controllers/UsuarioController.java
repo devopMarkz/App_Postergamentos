@@ -1,11 +1,16 @@
 package br.com.grupointeratlantica.cpl.app_postergacoes.controllers;
 
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaDTO;
+import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.erro.ErroRespostaValidationDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioAtualizacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioCriacaoDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.dtos.usuario.UsuarioRespostaDTO;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.UsuarioService;
 import br.com.grupointeratlantica.cpl.app_postergacoes.services.impl.UsuarioServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,8 +38,20 @@ public class UsuarioController {
     @PostMapping
     @Operation(summary = "Cadastrar usuário.", description = "Endpoint público que permite a criação de um novo usuário no sistema.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Usuário criado."),
-            @ApiResponse(responseCode = "400", description = "Erro de entrada de dados")
+            @ApiResponse(responseCode = "201", description = "Usuário criado com sucesso."),
+            @ApiResponse(
+                    responseCode = "400", description = "Erro de entrada de dados.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErroRespostaValidationDTO.class)
+                    )
+            ),
+            @ApiResponse(responseCode = "409", description = "Conflito. E-mail já cadastrado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErroRespostaDTO.class)
+                    )
+            )
     })
     public ResponseEntity<Void> criarUsuario(@Valid @RequestBody UsuarioCriacaoDTO usuarioCriacaoDTO){
         var usuario = usuarioService.salvar(usuarioCriacaoDTO);
@@ -45,7 +62,10 @@ public class UsuarioController {
     @PreAuthorize("hasRole('ADMINISTRADOR')")
     @Operation(summary = "Visualizar usuários.", description = "Permite que administradores visualizem todos os usuários do sistema.")
     public ResponseEntity<Page<UsuarioRespostaDTO>> buscarUsuarios(
+            @Parameter(description = "Número da página para paginação", example = "0")
             @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+
+            @Parameter(description = "Tamanho da página para paginação", example = "10")
             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
     ){
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
@@ -55,6 +75,30 @@ public class UsuarioController {
 
     @PutMapping
     @Operation(summary = "Atualizar senha.", description = "Permite atualizar a senha do usuário.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Usuário atualizado com sucesso."),
+            @ApiResponse(
+                    responseCode = "400", description = "Erro de entrada de dados.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErroRespostaValidationDTO.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400", description = "Senha incorreta.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErroRespostaDTO.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404", description = "Usuário não encontrado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErroRespostaDTO.class)
+                    )
+            )
+    })
     public ResponseEntity<Void> atualizarSenha(@Valid @RequestBody UsuarioAtualizacaoDTO usuarioAtualizacaoDTO){
         usuarioService.atualizarUsuario(usuarioAtualizacaoDTO);
         return ResponseEntity.noContent().build();
