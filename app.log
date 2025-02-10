@@ -170,3 +170,210 @@
 2025-02-10T09:07:37.160-03:00  INFO 30580 --- [app-postergacoes] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-02-10T09:07:37.177-03:00  INFO 30580 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-02-10T09:07:37.182-03:00  INFO 30580 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-10T09:07:44.832-03:00  INFO 12096 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Starting AppPostergacoesApplication using Java 17.0.14 with PID 12096 (C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes\target\classes started by Marcos Andre in C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes)
+2025-02-10T09:07:44.840-03:00 DEBUG 12096 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-02-10T09:07:44.841-03:00  INFO 12096 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : The following 1 profile is active: "test"
+2025-02-10T09:07:48.214-03:00  INFO 12096 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-10T09:07:48.403-03:00  INFO 12096 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 166 ms. Found 4 JPA repository interfaces.
+2025-02-10T09:07:50.696-03:00  INFO 12096 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-10T09:07:50.732-03:00  INFO 12096 --- [app-postergacoes] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-10T09:07:50.733-03:00  INFO 12096 --- [app-postergacoes] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10T09:07:50.971-03:00  INFO 12096 --- [app-postergacoes] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-10T09:07:50.972-03:00  INFO 12096 --- [app-postergacoes] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5986 ms
+2025-02-10T09:07:51.844-03:00  INFO 12096 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-10T09:07:52.360-03:00  INFO 12096 --- [app-postergacoes] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-02-10T09:07:52.369-03:00  INFO 12096 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-10T09:07:52.544-03:00  INFO 12096 --- [app-postergacoes] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-10T09:07:52.766-03:00  INFO 12096 --- [app-postergacoes] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-10T09:07:52.883-03:00  INFO 12096 --- [app-postergacoes] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-10T09:07:53.772-03:00  INFO 12096 --- [app-postergacoes] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-10T09:07:54.042-03:00  INFO 12096 --- [app-postergacoes] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-10T09:07:56.004-03:00  INFO 12096 --- [app-postergacoes] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-10T09:07:56.096-03:00  INFO 12096 --- [app-postergacoes] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:07:56.922-03:00  INFO 12096 --- [app-postergacoes] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-02-10T09:07:57.894-03:00 DEBUG 12096 --- [app-postergacoes] [main] b.c.g.c.a.c.SecurityFilterAuthentication : Filter 'securityFilterAuthentication' configured for use
+2025-02-10T09:07:58.025-03:00  INFO 12096 --- [app-postergacoes] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-10T09:08:00.908-03:00  INFO 12096 --- [app-postergacoes] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-02-10T09:08:02.038-03:00  INFO 12096 --- [app-postergacoes] [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-02-10T09:08:02.285-03:00  INFO 12096 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-10T09:08:02.315-03:00  INFO 12096 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Started AppPostergacoesApplication in 18.613 seconds (process running for 19.451)
+2025-02-10T09:08:05.408-03:00  INFO 12096 --- [app-postergacoes] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-10T09:08:05.409-03:00  INFO 12096 --- [app-postergacoes] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-10T09:08:05.413-03:00  INFO 12096 --- [app-postergacoes] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-02-10T09:08:07.365-03:00  INFO 12096 --- [app-postergacoes] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1111 ms
+2025-02-10T09:21:18.346-03:00  INFO 12096 --- [app-postergacoes] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-10T09:21:18.795-03:00  INFO 12096 --- [app-postergacoes] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-10T09:21:18.804-03:00  INFO 12096 --- [app-postergacoes] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:21:18.817-03:00  INFO 12096 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-10T09:21:18.821-03:00  INFO 12096 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-10T09:21:23.033-03:00  INFO 29656 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Starting AppPostergacoesApplication using Java 17.0.14 with PID 29656 (C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes\target\classes started by Marcos Andre in C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes)
+2025-02-10T09:21:23.047-03:00 DEBUG 29656 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-02-10T09:21:23.049-03:00  INFO 29656 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : The following 1 profile is active: "test"
+2025-02-10T09:21:26.318-03:00  INFO 29656 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-10T09:21:26.543-03:00  INFO 29656 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 201 ms. Found 4 JPA repository interfaces.
+2025-02-10T09:21:28.748-03:00  INFO 29656 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-10T09:21:28.785-03:00  INFO 29656 --- [app-postergacoes] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-10T09:21:28.786-03:00  INFO 29656 --- [app-postergacoes] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10T09:21:28.991-03:00  INFO 29656 --- [app-postergacoes] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-10T09:21:28.991-03:00  INFO 29656 --- [app-postergacoes] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5806 ms
+2025-02-10T09:21:29.657-03:00  INFO 29656 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-10T09:21:30.157-03:00  INFO 29656 --- [app-postergacoes] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-02-10T09:21:30.161-03:00  INFO 29656 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-10T09:21:30.296-03:00  INFO 29656 --- [app-postergacoes] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-10T09:21:30.463-03:00  INFO 29656 --- [app-postergacoes] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-10T09:21:30.598-03:00  INFO 29656 --- [app-postergacoes] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-10T09:21:31.357-03:00  INFO 29656 --- [app-postergacoes] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-10T09:21:31.596-03:00  INFO 29656 --- [app-postergacoes] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-10T09:21:33.915-03:00  INFO 29656 --- [app-postergacoes] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-10T09:21:34.004-03:00  INFO 29656 --- [app-postergacoes] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:21:34.725-03:00  INFO 29656 --- [app-postergacoes] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-02-10T09:21:35.897-03:00 DEBUG 29656 --- [app-postergacoes] [main] b.c.g.c.a.c.SecurityFilterAuthentication : Filter 'securityFilterAuthentication' configured for use
+2025-02-10T09:21:36.014-03:00  INFO 29656 --- [app-postergacoes] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-10T09:21:39.097-03:00  INFO 29656 --- [app-postergacoes] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-02-10T09:21:40.268-03:00  INFO 29656 --- [app-postergacoes] [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-02-10T09:21:40.505-03:00  INFO 29656 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-10T09:21:40.536-03:00  INFO 29656 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Started AppPostergacoesApplication in 18.477 seconds (process running for 19.213)
+2025-02-10T09:36:26.278-03:00  INFO 29656 --- [app-postergacoes] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-10T09:36:26.709-03:00  INFO 29656 --- [app-postergacoes] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-10T09:36:26.718-03:00  INFO 29656 --- [app-postergacoes] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:36:26.735-03:00  INFO 29656 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-10T09:36:26.742-03:00  INFO 29656 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-10T09:36:32.642-03:00  INFO 1472 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Starting AppPostergacoesApplication using Java 17.0.14 with PID 1472 (C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes\target\classes started by Marcos Andre in C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes)
+2025-02-10T09:36:32.651-03:00 DEBUG 1472 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-02-10T09:36:32.653-03:00  INFO 1472 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : The following 1 profile is active: "test"
+2025-02-10T09:36:35.208-03:00  INFO 1472 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-10T09:36:35.350-03:00  INFO 1472 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 128 ms. Found 4 JPA repository interfaces.
+2025-02-10T09:36:37.079-03:00  INFO 1472 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-10T09:36:37.105-03:00  INFO 1472 --- [app-postergacoes] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-10T09:36:37.105-03:00  INFO 1472 --- [app-postergacoes] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10T09:36:37.254-03:00  INFO 1472 --- [app-postergacoes] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-10T09:36:37.254-03:00  INFO 1472 --- [app-postergacoes] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4481 ms
+2025-02-10T09:36:37.774-03:00  INFO 1472 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-10T09:36:38.148-03:00  INFO 1472 --- [app-postergacoes] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-02-10T09:36:38.155-03:00  INFO 1472 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-10T09:36:38.286-03:00  INFO 1472 --- [app-postergacoes] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-10T09:36:38.413-03:00  INFO 1472 --- [app-postergacoes] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-10T09:36:38.492-03:00  INFO 1472 --- [app-postergacoes] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-10T09:36:39.122-03:00  INFO 1472 --- [app-postergacoes] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-10T09:36:39.336-03:00  INFO 1472 --- [app-postergacoes] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-10T09:36:41.151-03:00  INFO 1472 --- [app-postergacoes] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-10T09:36:41.238-03:00  INFO 1472 --- [app-postergacoes] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:36:41.916-03:00  INFO 1472 --- [app-postergacoes] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-02-10T09:36:42.812-03:00 DEBUG 1472 --- [app-postergacoes] [main] b.c.g.c.a.c.SecurityFilterAuthentication : Filter 'securityFilterAuthentication' configured for use
+2025-02-10T09:36:42.933-03:00  INFO 1472 --- [app-postergacoes] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-10T09:36:45.700-03:00  INFO 1472 --- [app-postergacoes] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-02-10T09:36:46.710-03:00  INFO 1472 --- [app-postergacoes] [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-02-10T09:36:46.965-03:00  INFO 1472 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-10T09:36:46.986-03:00  INFO 1472 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Started AppPostergacoesApplication in 15.156 seconds (process running for 15.738)
+2025-02-10T09:37:45.497-03:00  INFO 1472 --- [app-postergacoes] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-10T09:37:45.497-03:00  INFO 1472 --- [app-postergacoes] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-10T09:37:45.500-03:00  INFO 1472 --- [app-postergacoes] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-02-10T09:37:46.944-03:00  INFO 1472 --- [app-postergacoes] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 881 ms
+2025-02-10T09:42:51.377-03:00  INFO 1472 --- [app-postergacoes] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-10T09:42:51.891-03:00  INFO 1472 --- [app-postergacoes] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-10T09:42:51.900-03:00  INFO 1472 --- [app-postergacoes] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:42:51.918-03:00  INFO 1472 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-10T09:42:51.922-03:00  INFO 1472 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-10T09:42:58.138-03:00  INFO 16032 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Starting AppPostergacoesApplication using Java 17.0.14 with PID 16032 (C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes\target\classes started by Marcos Andre in C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes)
+2025-02-10T09:42:58.146-03:00 DEBUG 16032 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-02-10T09:42:58.149-03:00  INFO 16032 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : The following 1 profile is active: "test"
+2025-02-10T09:43:00.793-03:00  INFO 16032 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-10T09:43:00.961-03:00  INFO 16032 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 148 ms. Found 4 JPA repository interfaces.
+2025-02-10T09:43:02.784-03:00  INFO 16032 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-10T09:43:02.806-03:00  INFO 16032 --- [app-postergacoes] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-10T09:43:02.807-03:00  INFO 16032 --- [app-postergacoes] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10T09:43:02.985-03:00  INFO 16032 --- [app-postergacoes] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-10T09:43:02.986-03:00  INFO 16032 --- [app-postergacoes] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4715 ms
+2025-02-10T09:43:03.523-03:00  INFO 16032 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-10T09:43:03.887-03:00  INFO 16032 --- [app-postergacoes] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-02-10T09:43:03.890-03:00  INFO 16032 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-10T09:43:03.993-03:00  INFO 16032 --- [app-postergacoes] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-10T09:43:04.139-03:00  INFO 16032 --- [app-postergacoes] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-10T09:43:04.218-03:00  INFO 16032 --- [app-postergacoes] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-10T09:43:04.779-03:00  INFO 16032 --- [app-postergacoes] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-10T09:43:04.949-03:00  INFO 16032 --- [app-postergacoes] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-10T09:43:06.742-03:00  INFO 16032 --- [app-postergacoes] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-10T09:43:06.841-03:00  INFO 16032 --- [app-postergacoes] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:43:07.445-03:00  INFO 16032 --- [app-postergacoes] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-02-10T09:43:08.453-03:00 DEBUG 16032 --- [app-postergacoes] [main] b.c.g.c.a.c.SecurityFilterAuthentication : Filter 'securityFilterAuthentication' configured for use
+2025-02-10T09:43:08.583-03:00  INFO 16032 --- [app-postergacoes] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-10T09:43:11.730-03:00  INFO 16032 --- [app-postergacoes] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-02-10T09:43:12.982-03:00  INFO 16032 --- [app-postergacoes] [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-02-10T09:43:13.233-03:00  INFO 16032 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-10T09:43:13.266-03:00  INFO 16032 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Started AppPostergacoesApplication in 16.182 seconds (process running for 16.757)
+2025-02-10T09:43:13.448-03:00  INFO 16032 --- [app-postergacoes] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-10T09:43:13.449-03:00  INFO 16032 --- [app-postergacoes] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-10T09:43:13.454-03:00  INFO 16032 --- [app-postergacoes] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-02-10T09:43:15.391-03:00  INFO 16032 --- [app-postergacoes] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1224 ms
+2025-02-10T09:49:19.376-03:00  INFO 16032 --- [app-postergacoes] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-10T09:49:19.841-03:00  INFO 16032 --- [app-postergacoes] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-10T09:49:19.851-03:00  INFO 16032 --- [app-postergacoes] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:49:19.872-03:00  INFO 16032 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-10T09:49:19.877-03:00  INFO 16032 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-10T09:49:26.111-03:00  INFO 29292 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Starting AppPostergacoesApplication using Java 17.0.14 with PID 29292 (C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes\target\classes started by Marcos Andre in C:\Users\Marcos Andre\Desktop\SpringBoot\app-postergacoes)
+2025-02-10T09:49:26.115-03:00 DEBUG 29292 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-02-10T09:49:26.117-03:00  INFO 29292 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : The following 1 profile is active: "test"
+2025-02-10T09:49:28.953-03:00  INFO 29292 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-10T09:49:29.098-03:00  INFO 29292 --- [app-postergacoes] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 127 ms. Found 4 JPA repository interfaces.
+2025-02-10T09:49:30.960-03:00  INFO 29292 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-10T09:49:30.998-03:00  INFO 29292 --- [app-postergacoes] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-10T09:49:30.999-03:00  INFO 29292 --- [app-postergacoes] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10T09:49:31.148-03:00  INFO 29292 --- [app-postergacoes] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-10T09:49:31.149-03:00  INFO 29292 --- [app-postergacoes] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4907 ms
+2025-02-10T09:49:31.680-03:00  INFO 29292 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-10T09:49:32.154-03:00  INFO 29292 --- [app-postergacoes] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-02-10T09:49:32.158-03:00  INFO 29292 --- [app-postergacoes] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-10T09:49:32.273-03:00  INFO 29292 --- [app-postergacoes] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-10T09:49:32.392-03:00  INFO 29292 --- [app-postergacoes] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-10T09:49:32.474-03:00  INFO 29292 --- [app-postergacoes] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-10T09:49:33.121-03:00  INFO 29292 --- [app-postergacoes] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-10T09:49:33.339-03:00  INFO 29292 --- [app-postergacoes] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-10T09:49:35.537-03:00  INFO 29292 --- [app-postergacoes] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-10T09:49:35.644-03:00  INFO 29292 --- [app-postergacoes] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:49:36.393-03:00  INFO 29292 --- [app-postergacoes] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-02-10T09:49:37.362-03:00 DEBUG 29292 --- [app-postergacoes] [main] b.c.g.c.a.c.SecurityFilterAuthentication : Filter 'securityFilterAuthentication' configured for use
+2025-02-10T09:49:37.494-03:00  INFO 29292 --- [app-postergacoes] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-10T09:49:40.164-03:00  INFO 29292 --- [app-postergacoes] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-02-10T09:49:41.275-03:00  INFO 29292 --- [app-postergacoes] [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-02-10T09:49:41.492-03:00  INFO 29292 --- [app-postergacoes] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-10T09:49:41.520-03:00  INFO 29292 --- [app-postergacoes] [main] b.c.g.c.a.AppPostergacoesApplication     : Started AppPostergacoesApplication in 16.348 seconds (process running for 16.953)
+2025-02-10T09:57:39.684-03:00  INFO 29292 --- [app-postergacoes] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-10T09:57:39.951-03:00  INFO 29292 --- [app-postergacoes] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-10T09:57:39.957-03:00  INFO 29292 --- [app-postergacoes] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T09:57:39.967-03:00  INFO 29292 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-10T09:57:39.970-03:00  INFO 29292 --- [app-postergacoes] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

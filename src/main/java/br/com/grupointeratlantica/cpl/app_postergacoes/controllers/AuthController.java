@@ -36,7 +36,8 @@ public class AuthController {
     @Operation(summary = "Autenticar usuário",
     description = "Informe usuário e senha para obter um token JWT e utilizá-lo para efetuar requisições no sistema.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Usuário autenticado.")
+            @ApiResponse(responseCode = "200", description = "Usuário autenticado."),
+            @ApiResponse(responseCode = "401", description = "Usuário não autenticado.")
     })
     public ResponseEntity<TokenDTO> autenticarUsuario(@RequestBody AuthDTO authDTO, HttpServletRequest request) {
         log.info("Requisição recebida: Método={} | Endpoint={} | Usuário={}",
