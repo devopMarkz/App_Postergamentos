@@ -86,6 +86,17 @@ class EmpresaServiceImplTest {
 
             assertEquals("Alterado", empresa.getNome());
         }
+
+        @Test
+        void testAtualizarEmpresa_Falha(){
+            EmpresaAtualizacaoDTO dto = new EmpresaAtualizacaoDTO(1, 1, "Alterado", "alterado@gmail.com");
+
+            given(empresaRepository.findById(anyInt())).willReturn(Optional.empty());
+
+            assertThrows(EmpresaInexistenteException.class, () -> {
+                empresaServiceImpl.atualizarEmpresa(dto);
+            });
+        }
     }
 
 }
